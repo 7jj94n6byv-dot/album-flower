@@ -4,7 +4,7 @@
 
 ## 这是什么
 
-一个 EasyClaw Skill，给定一张专辑封面（或艺人 / 专辑 / 歌名），自动完成四步，输出一束**配色与专辑一致、理念与专辑共鸣**的真实花束设计 + AI 生成成品效果图。
+一个 Codex Skill，给定一张专辑封面（或艺人 / 专辑 / 歌名），自动完成四步，输出一束**配色与专辑一致、理念与专辑共鸣**的真实花束设计 + AI 生成成品效果图。
 
 ## 四步工作流
 
@@ -13,7 +13,20 @@
 | 0. 检索创作理念 | 用 web 搜索获取专辑的概念 / 作者意图 / 叙事，提炼可视觉化的理念关键词 |
 | 1. 提取配色与版式 | 提炼主色 / 辅助色 / 点睛色 + 可复刻的文字、色块、质感 |
 | 2. 设计花束方案 | 花材清单（真实花材）+ 包装方案 + 理念如何落到花材隐喻 |
-| 3. 生成成品图 | 用 image-gen 图生图（i2i），左/右上角附原专辑封面缩略图 |
+| 3. 生成成品图 | 用 Codex 内置 `image_gen` 图生图，左/右上角附原专辑封面缩略图 |
+
+## 成品案例
+
+| Taylor Swift · Lover | TWS · Sparkling Blue | TWS · Summer Beat! |
+|:---:|:---:|:---:|
+| ![Lover 粉蓝专辑花束](assets/examples/case-01-lover.jpg) | ![Sparkling Blue 蓝白专辑花束](assets/examples/case-02-tws-sparkling-blue.jpg) | ![Summer Beat 多彩专辑花束](assets/examples/case-03-tws-summer-beat.jpg) |
+| 粉色主调、浅蓝线条花与封面柔雾感呼应 | 蓝白同色系花材与几何包装呼应封面 | 多彩焦点花与白绿包装复刻夏日活力 |
+
+## 运行方式
+
+- 只使用 Codex 内置图像生成工具，不需要配置 `OPENAI_API_KEY`。
+- 本地封面先通过 `view_image` 载入，再作为参考图逐张生成。
+- 当前会话未提供内置 `image_gen` 时停止并明确提示，不自动切换 CLI、API 或第三方服务。
 
 ## 核心规则
 
@@ -49,8 +62,10 @@
 ```
 album-flower/
 ├── SKILL.md                        # 主流程（四步工作流）
+├── assets/
+│   └── examples/                   # GitHub 可预览的成品案例
 └── references/
     ├── flower-palette.md           # 真实花材库 + 颜色映射 + 喷漆染色手法
-    ├── examples.md                 # 6 个已拆解的真实范例
+    ├── examples.md                 # 3 个成品案例 + 6 个设计拆解
     └── premium-style.md            # 高级感规范详解 + i2i prompt 模板
 ```

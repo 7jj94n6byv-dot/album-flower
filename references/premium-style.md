@@ -1,4 +1,4 @@
-# 高级感六法则 + i2i 生图模板
+# 高级感六法则 + Codex 内置图生图模板
 
 参考真实“专辑花束”项目提炼的成品高级感共性。六法则缺一不可，否则成品会“普通、像零售花束”。
 
@@ -35,7 +35,7 @@
 - 封面颜色跨元素呼应：花材 / 包装 / 背景 / 缎带 / 缩略图。
 - 精确比例，例如 70% 深基底 + 25% 主色 + 5% 点睛。
 
-## i2i 生图 prompt 模板（直接套用）
+## 内置 i2i prompt 模板（直接套用）
 
 以“Album Cover”为底图，花束图（可选）为花材参考：
 
@@ -73,11 +73,7 @@ STYLE: premium florist editorial photography, magazine quality, high detail, sha
 focus, shallow depth of field, portrait orientation.
 ```
 
-调用示例（Windows）：
-
-```powershell
-python "D:\...\image-gen\scripts\generate_image.py" --prompt-file "<prompt>.txt" --filename "<out>.jpg" --size 1024x1536 -i "<cover.png>" -i "<previous_bouquet.jpg>"
-```
+调用时先用 `view_image` 打开本地封面，再把该图片作为参考图交给 Codex 内置 `image_gen`。请求竖版约 `1024 × 1536`，生成完成后再复制到用户指定目录。不要调用 CLI/API，也不要要求用户配置 API Key。
 
 ## 验证清单（生成后自查）
 
